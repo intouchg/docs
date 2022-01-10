@@ -1,0 +1,115 @@
+<IntroParagraph paddingTop="0">
+    Themeable React component primitives focused on developer experience, performance, and accessibility.
+</IntroParagraph>
+
+```jsx
+<Box
+    color="white"
+    backgroundColor="#5e00ff"
+    padding="48px"
+    textTransform="uppercase"
+>
+    Hello world
+</Box>
+```
+
+<IntroParagraph paddingTop={9}>
+    Organize styles into reusable component variants, and customize those variants on the fly.
+</IntroParagraph>
+
+```jsx
+<Heading
+    variant="Fancy"
+    fontSize="1.875rem"
+    letterSpacing="0.1em"
+    borderBottom="3px solid"
+>
+    Hello world
+</Heading>
+```
+
+<IntroParagraph paddingTop={9}>
+    Build a global theme containing design tokens and scales, then use those values to style your app.
+</IntroParagraph>
+
+```jsx
+<Text
+    color="Primary"
+    backgroundColor="Secondary"
+    padding={2}
+    fontSize={4}
+>
+    Hello world
+</Text>
+```
+
+<IntroParagraph paddingTop={9}>
+    Follow the links to learn more:
+</IntroParagraph>
+
+<LinkGrid marginBottom={8}>
+    <LinkGridItem href="/docs/introduction">
+        <Heading>
+            Introduction
+        </Heading>
+        <Text>
+            Meet the design system component library
+        </Text>
+    </LinkGridItem>
+    <LinkGridItem href="/docs/getting-started">
+        <Heading>
+            Getting Started
+        </Heading>
+        <Text>
+            Get up and running with the component library
+        </Text>
+    </LinkGridItem>
+    <LinkGridItem href="/docs/api">
+        <Heading>
+            Common API
+        </Heading>
+        <Text>
+            Learn the basic API common to layout components
+        </Text>
+    </LinkGridItem>
+    <LinkGridItem href="/docs/theming">
+        <Heading>
+            Theming
+        </Heading>
+        <Text>
+            Create a global theme to share design tokens
+        </Text>
+    </LinkGridItem>
+    <LinkGridItem href="/docs/advanced-api">
+        <Heading>
+            Advanced API
+        </Heading>
+        <Text>
+            Solve edge cases using these advanced props
+        </Text>
+    </LinkGridItem>
+    <LinkGridItem href="/docs/components">
+        <Heading>
+            Components
+        </Heading>
+        <Text>
+            Explore the component library in full detail
+        </Text>
+    </LinkGridItem>
+    <LinkGridItem href="/docs/recipes">
+        <Heading>
+            Recipes
+        </Heading>
+        <Text>
+            Discover commonly used composition patterns
+        </Text>
+    </LinkGridItem>
+    <LinkGridItem href="/docs/resources">
+        <Heading>
+            Resources
+        </Heading>
+        <Text>
+            Browse the best resources for learning React
+        </Text>
+    </LinkGridItem>
+</LinkGrid>

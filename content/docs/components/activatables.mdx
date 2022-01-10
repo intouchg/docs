@@ -1,0 +1,122 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        Activatables
+    </Heading>
+    <RepoSourceLink repo="components" href="/Activatables.tsx" />
+    <EditDocsLink href="/components/activatables.mdx" />
+</DocHeaderStack>
+
+Tracks the `active` status of child `Activatable` components. 
+This component is a [Context Provider](https://reactjs.org/docs/context.html),
+it does not render any elements.
+
+This component can be used to build accordions, tabs, toggle buttons, offscreen navs, and any other component that toggles an on/off state.
+
+```jsx
+<Activatables>
+    <Activatable id="1">
+        {({ active, toggleActive }) => (
+            <Button onClick={toggleActive}>
+                Button 1A {active ? 'on' : 'off'}
+            </Button>
+        )}
+    </Activatable>
+    <Activatable id="1">
+        {({ active, toggleActive }) => (
+            <Button onClick={toggleActive}>
+                Button 1B {active ? 'on' : 'off'}
+            </Button>
+        )}
+    </Activatable>
+    <Activatable id="2">
+        {({ active, toggleActive }) => (
+            <Button onClick={toggleActive}>
+                Button 2 {active ? 'on' : 'off'}
+            </Button>
+        )}
+    </Activatable>
+</Activatables>
+```
+
+<HeadingLink
+    as="h2"
+    slug="defaultActiveIds"
+>
+    <Code>defaultActiveIds</Code>
+</HeadingLink>
+
+An array of `id`s to default to active.
+
+<HeadingLink
+    as="h2"
+    slug="allowMultipleActive"
+>
+    <Code>allowMultipleActive</Code>
+</HeadingLink>
+
+Allows multiple `id`s to be active simultaneously. Defaults to `false`.
+
+<HeadingLink
+    as="h2"
+    slug="allowNoneActive"
+>
+    <Code>allowNoneActive</Code>
+</HeadingLink>
+
+Allows all `id`s to be inactive simultaneously. Defaults to `true`.
+
+```jsx
+<Activatables
+    defaultActiveIds={[ '1' ]}
+    allowMultipleActive
+    allowNoneActive={false}
+>
+    <Activatable id="1">
+        {({ active, toggleActive }) => (
+            <Button onClick={toggleActive}>
+                Button 1 {active ? 'on' : 'off'}
+            </Button>
+        )}
+    </Activatable>
+    <Activatable id="2">
+        {({ active, toggleActive }) => (
+            <Button onClick={toggleActive}>
+                Button 2 {active ? 'on' : 'off'}
+            </Button>
+        )}
+    </Activatable>
+</Activatables>
+```
+
+<HeadingLink
+    as="h2"
+    slug="activatable-child"
+>
+    <Code>Activatable</Code> child
+</HeadingLink>
+
+Each child `Activatable` component must have an `id`, which is used to track its `active` state. Multiple 
+`Activatable` components can have the same `id`, and `id`s may be strings or numbers.
+
+The `Activatable` component wraps a child function which receives a props object:
+
+```jsx
+<Activatables>
+    <Activatable id={1}>
+        {({ active, toggleActive, activeIds, setActiveIds }) => (
+            <Button onClick={toggleActive}>
+                {active ? 'Active' : 'Inactive'}
+            </Button>
+        )}
+    </Activatable>
+</Activatables>
+```
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/components/svg">
+        &larr; Svg
+    </DocFooterLink>
+    <DocFooterLink href="/docs/hooks">
+        Hooks &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

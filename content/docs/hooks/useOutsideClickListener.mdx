@@ -1,0 +1,24 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        useOutsideClickListener
+    </Heading>
+    <RepoSourceLink repo="hooks" href="/useOutsideClickListener.ts" />
+    <EditDocsLink href="/hooks/useOutsideClickListener.mdx" />
+</DocHeaderStack>
+
+React to clicks outside an element
+
+```jsx noPreview
+const myCallback = useCallback(() => console.log('clicked outside'), [])
+
+const ref = useOutsideClickListener(myCallback)
+```
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/hooks">
+        &larr; Hooks
+    </DocFooterLink>
+    <DocFooterLink href="/docs/recipes">
+        Recipes &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

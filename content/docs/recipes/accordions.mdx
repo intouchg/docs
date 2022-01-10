@@ -1,0 +1,182 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        Accordions
+    </Heading>
+    <EditDocsLink href="/recipes/accordions.mdx" />
+</DocHeaderStack>
+
+We'll use the [`Activatables`](/docs/components/activatables) stateful component to control 
+expanding the Accordions. Each `Activatables` component will act as a group of Accordions. This 
+will also allow easily configuring whether multiple accordions can be active simultaneously.
+
+
+<HeadingLink
+    as="h2"
+    slug="1-create-accordiontitle-component"
+>
+    1. Create <Code>AccordionTitle</Code> component
+</HeadingLink>
+
+First we'll create an `AnimatedTitle` component to animate the Accordion title using `styled-components`.
+
+Then we'll create an `AccordionTitle` component, which uses the `active` and `onClick` props provided by the `Activatable` 
+stateful component to drive the `AnimatedTitle` animation, as well as toggling the `active` state on click.
+
+```jsx noPreview
+import styled from 'styled-components'
+import { Activatable, Text, Button } from '@intouchg/components'
+
+const AnimatedTitle = styled(Text)`
+    color: ${(props) => props.active ? 'green' : 'red'};
+`
+
+const AccordionTitle = ({ id, ...props }) => (
+    <Activatable id={id}>
+        {({ active, toggleActive }) => (
+            <Button
+                invisible
+                onClick={toggleActive}
+            >
+                <AnimatedTitle
+                    active={active}
+                    {...props}
+                />
+            </Button>
+        )}
+    </Activatable>
+)
+
+export { AccordionTitle }
+```
+
+<HeadingLink
+    as="h2"
+    slug="2-create-accordioncontent-component"
+>
+    2. Create <Code>AccordionContent</Code> component
+</HeadingLink>
+
+Next we'll create an `AnimatedContent` component to animate the Accordion content using `react-spring`. We 
+measure the Accordion content with the `useMeasure` hook, and use the `height` value in our `active` animation.
+
+Then we'll create an `AccordionContent` component, which uses the `active` prop provided by the `Activatable` stateful 
+component to drive the `AnimatedContent` animation.
+
+```jsx noPreview
+import { useSpring, animated } from 'react-spring'
+import { Activatable, Box } from '@intouchg/components'
+import { useMeasure } from '@intouchg/hooks'
+
+const AnimatedContent = ({ active, ...props }) => {
+    const [ ref, size ] = useMeasure()
+    const styles = useSpring({ height: active ? size.height : 0 })
+
+    return (
+        <animated.div
+            style={{
+                overflow: 'hidden',
+                willChange: 'height',
+                ...styles,
+            }}
+        >
+            <Box
+                ref={ref}
+                {...props}
+            />
+        </animated.div>
+    )
+}
+
+const AccordionContent = ({ id, ...props }) => (
+    <Activatable id={id}>
+        {({ active }) => (
+            <AnimatedContent
+                active={active}
+                {...props}
+            />
+        )}
+    </Activatable>
+)
+
+export { AccordionContent }
+```
+
+<HeadingLink
+    as="h2"
+    slug="3-create-accordioncontainer-component"
+>
+    3. Create <Code>AccordionContainer</Code> component
+</HeadingLink>
+
+Next we'll create an `AccordionContainer` component for basic container styles. This will be the parent element to the `AccordionTitle` and `AccordionContent` components.
+
+```jsx noPreview
+import styled from 'styled-components'
+import { Stack } from '@intouchg/components'
+
+const AccordionContainer = styled(Stack)`
+    width: 100%;
+    background-color: white;
+    border: 2px solid grey;
+    border-radius: 8px;
+`
+
+export { AccordionContainer }
+```
+
+<HeadingLink
+    as="h2"
+    slug="4-build-the-accordion"
+>
+    4. Build the Accordion
+</HeadingLink>
+
+We're finally ready to build some Accordions. Each group of Accordions should be wrapped in an `Activatables` component.
+
+Use the `AccordionContainer`, `AccordionTitle`, and `AccordionContent` components to build each Accordion. Remember to pass the 
+`id` prop to the `AccordionTitle` and `AccordionContent` components.
+
+```jsx noPreview
+import { Activatables } from '@intouchg/components'
+import { AccordionContainer } from './AccordionContainer'
+import { AccordionTitle } from './AccordionTitle'
+import { AccordionContent } from './AccordionContent'
+
+const MyPage = () => (
+    <Activatables
+        allowMultipleActive
+        defaultActiveIds={[ '1' ]}
+    >
+
+        <AccordionContainer>
+            <AccordionTitle id="1">
+                First accordion title
+            </AccordionTitle>
+            <AccordionContent id="1">
+                First accordion content - Lorem ipsum dolor sit amet, 
+                consectetur adipiscing elit.
+            </AccordionContent>
+        </AccordionContainer>
+
+        <AccordionContainer>
+            <AccordionTitle id="2">
+                Second accordion title
+            </AccordionTitle>
+            <AccordionContent id="2">
+                Second accordion content - Lorem ipsum dolor sit amet, 
+                consectetur adipiscing elit.
+            </AccordionContent>
+        </AccordionContainer>
+
+    </Activatables>
+)
+```
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/recipes">
+        &larr; Recipes
+    </DocFooterLink>
+    <DocFooterLink href="/docs/resources">
+        Resources &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

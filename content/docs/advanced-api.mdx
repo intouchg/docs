@@ -1,0 +1,160 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        Advanced API
+    </Heading>
+    <EditDocsLink href="/advanced-api.mdx" />
+</DocHeaderStack>
+
+In addition to the props detailed below, all layout components also have access to the props 
+mentioned in the [common API](/docs/api) section.
+
+<HeadingLink
+    as="h2"
+    slug="the-style-prop"
+>
+    The <Code>style</Code> prop
+</HeadingLink>
+
+The `style` prop allows passing inline CSS styles. This prop is available on all standard 
+HTML elements in addition to the components in this library. Use inline styles to add CSS 
+styles that are not supported in the common API.
+
+Note that inline styles do not have direct access to theme values, and cannot use the 
+responsive style syntax.
+
+```jsx
+<Box
+    width="100px"
+    height="100px"
+    backgroundColor="Secondary"
+    style={{
+        cursor: 'crosshair',
+        transform: 'scale3d(1.5, 0.75, 1)',
+    }}
+/>
+```
+
+Alternatively, make a new `styled-component` and add the CSS styles there.
+
+```jsx noPreview
+import styled from 'styled-components'
+import { Box } from '@intouchg/components'
+
+const CursorBox = styled(Box)`
+    cursor: pointer;
+    transform: scale3d(1.5, 0.75, 1);
+`
+```
+
+Inline styles should also be used for styles that are updated outside 
+the react render cycle - such as values from [react-spring](https://www.react-spring.io/).
+
+<HeadingLink
+    as="h2"
+    slug="the-sx-prop"
+>
+    The <Code>sx</Code> Prop
+</HeadingLink>
+
+The `sx` prop takes an object with CSS selectors as keys, and style objects as values. 
+These style objects have access to theme values, just like the common API, 
+and can use responsive styles.
+
+```jsx
+<Box
+    width="200px"
+    height="100px"
+    backgroundColor="Primary"
+    sx={{
+        '&:hover': {
+            backgroundColor: 'Secondary',
+        },
+        '&:active': {
+            backgroundColor: 'Tertiary',
+        },
+    }}
+/>
+```
+
+```jsx
+<Box
+    width="200px"
+    height="100px"
+    backgroundColor="Primary"
+    sx={{
+        '&:hover': {
+            backgroundColor: [ 'Tertiary', null, null, 'Secondary' ],
+        },
+    }}
+/>
+```
+
+If you create your own `styled-components`, you can add the `sx` property to them using the function 
+exported from this library. You can also combine this with the `styleFunctions` mentioned in 
+[Getting Started](/docs/getting-started).
+
+```jsx noPreview
+import styled from 'styled-components'
+import { styleFunctions, sx } from '@intouchg/components'
+
+const MyHeading = styled.h1`
+    font-size: 2rem;
+    ${styleFunctions}
+    ${sx}
+`
+```
+
+<HeadingLink
+    as="h2"
+    slug="the-as-prop"
+>
+    The <Code>as</Code> Prop
+</HeadingLink>
+
+The [`as` polymorphic prop](https://styled-components.com/docs/api#as-polymorphic-prop) allows switching 
+out the element or component being rendered while keeping all the component styles. You can pass strings 
+for HTML element names or functions for React components.
+
+If you create your own `styled-components`, they will automatically have access to the `as` prop.
+
+```jsx
+<Box
+    as="fieldset"
+    backgroundColor="Secondary"
+>
+    This renders a form fieldset element
+</Box>
+```
+
+```jsx
+<Heading
+    as="p"
+    variant="Fancy"
+>
+    This paragraph element has fancy heading styles
+</Heading>
+```
+
+```jsx
+<Stack
+    as={Link}
+    padding={3}
+    backgroundColor="Primary"
+>
+    <Text color="Secondary">
+        Hello
+    </Text>
+    <Text color="Tertiary">
+        world
+    </Text>
+</Stack>
+```
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/helpers">
+        &larr; Helper Functions
+    </DocFooterLink>
+    <DocFooterLink href="/docs/components">
+        Components &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

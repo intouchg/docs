@@ -1,0 +1,128 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        Getting Started
+    </Heading>
+    <EditDocsLink href="/getting-started.mdx" />
+</DocHeaderStack>
+
+Install the component library and dependencies to get started:
+
+```bash language=bash noPreview
+npm install @intouchg/components styled-components
+```
+
+These components can be used in any web-based React app, with or without a 
+[`ThemeProvider` component](https://styled-components.com/docs/advanced#theming). 
+Without a `ThemeProvider`, your components cannot [access the theme](/docs/theming) - 
+but they do still have full use of the [common](/docs/api) and [advanced APIs](/docs/advanced-api) 
+with regular CSS values.
+
+```jsx noPreview
+import { ThemeProvider } from 'styled-components'
+import { Stack, Heading, Text } from '@intouchg/components'
+import theme from './theme'
+
+const MyPage = () => (
+    <Stack>
+        <Heading>
+            Hello world
+        </Heading>
+        <Text>
+            Lorem ipsum dolor sit amet
+        </Text>
+    </Stack>
+)
+
+const App = () => (
+    <ThemeProvider theme={theme}>
+        <MyPage />
+    </ThemeProvider>
+)
+```
+
+<HeadingLink
+    as="h2"
+    slug="creating-components"
+>
+    Creating Components
+</HeadingLink>
+
+Use this library as primitive building blocks to create complex components. Use the 
+[spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) 
+to pass through props, which allows for quickly customizing components on the fly.
+
+```jsx noPreview
+import { Stack, Heading, Text } from '@intouchg/components'
+
+const Card = (props) => (
+    <Stack
+        width="100%"
+        maxWidth="240px"
+        padding={4}
+        {...props}
+    />
+)
+
+const MyPage = () => (
+    <Card fontSize="2rem">
+        <Heading>
+            Hello world
+        </Heading>
+        <Text>
+            Lorem ipsum dolor sit amet
+        </Text>
+    </Card>
+)
+```
+
+<HeadingLink
+    as="h2"
+    slug="styled-components"
+>
+    Styled-Components
+</HeadingLink>
+
+Because the components in this library are using `styled-components` under the hood, 
+their styles [can be extended](https://styled-components.com/docs/basics#extending-styles). 
+This is useful for creating new `styled-components` that inherit the styles from the extended 
+component, and still have access to the [common](/docs/api) and [advanced APIs](/docs/advanced-api).
+
+```jsx noPreview
+import styled from 'styled-components'
+import { Stack } from '@intouchg/components'
+
+const OutlineStack = styled(Stack)`
+    &:focus-within {
+        border: 2px solid blue;
+    }
+`
+
+const MyPage = () => (
+    <OutlineStack fontSize="2rem">
+        <Text>Hello</Text>
+        <Text>world</Text>
+    </OutlineStack>
+)
+```
+
+Alternatively, you can create your own `styled-components` from scratch and add the common API to them 
+using the `styleFunctions` exported from this library.
+
+```jsx noPreview
+import styled from 'styled-components'
+import { styleFunctions } from '@intouchg/components'
+
+const MyHeading = styled.h1`
+    font-size: 2rem;
+    ${styleFunctions}
+`
+```
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/introduction">
+        &larr; Introduction
+    </DocFooterLink>
+    <DocFooterLink href="/docs/api">
+        Common API &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

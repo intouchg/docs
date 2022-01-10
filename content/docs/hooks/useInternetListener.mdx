@@ -1,0 +1,24 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        useInternetListener
+    </Heading>
+    <RepoSourceLink repo="hooks" href="/useInternetListener.ts" />
+    <EditDocsLink href="/hooks/useInternetListener.mdx" />
+</DocHeaderStack>
+
+React to changes in internet connectivity
+
+```jsx noPreview
+const myCallback = useCallback((online) => console.log(online), [])
+
+useInternetListener(myCallback)
+```
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/hooks">
+        &larr; Hooks
+    </DocFooterLink>
+    <DocFooterLink href="/docs/recipes">
+        Recipes &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

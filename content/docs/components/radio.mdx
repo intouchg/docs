@@ -1,0 +1,43 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        Radio
+    </Heading>
+    <RepoSourceLink repo="components" href="/Radio.tsx" />
+    <EditDocsLink href="/components/radio.mdx" />
+</DocHeaderStack>
+
+Renders an `input` with `type="radio"`. Can be used as a [controlled or uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) 
+component.
+
+```jsx
+<Radio />
+```
+
+<HeadingLink
+    as="h2"
+    slug="icon"
+>
+    <Code>icon</Code>
+</HeadingLink>
+
+The `icon` prop replaces the icon rendered by the component.
+
+```jsx
+<Radio
+    fontSize="2rem"
+    borderWidth="2px"
+    borderColor="Primary"
+    icon={
+        <CheckIcon fill="Primary" padding={1} />
+    }
+/>
+```
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/components/checkbox">
+        &larr; Checkbox
+    </DocFooterLink>
+    <DocFooterLink href="/docs/components/select">
+        Select &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

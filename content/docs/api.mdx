@@ -1,0 +1,140 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        Common API
+    </Heading>
+    <EditDocsLink href="/api.mdx" />
+</DocHeaderStack>
+
+<HeadingLink
+    as="h2"
+    slug="responsive-styles"
+>
+    Responsive Styles
+</HeadingLink>
+
+All of the common API properties support using the [responsive styles syntax](https://styled-system.com/responsive-styles) 
+if `breakpoints` are defined in the theme. Simply pass an array of values to the property 
+instead of a single value.
+
+The first value in the array will be the base style. The second value in the array will 
+be applied at the smallest breakpoint and up. The third value will be applied at the second 
+smallest breakpoint and up, etc.
+
+Using `null` for one of the values in the array will cause the previous value to be applied 
+until the next breakpoint.
+
+```jsx
+<Box
+    width={[ '100px', '200px' ]}
+    height={[ '50px', null, '100px' ]}
+    backgroundColor={[ 'Tertiary', null, null, 'Secondary' ]}
+/>
+```
+
+<HeadingLink
+    as="h2"
+    slug="style-props"
+>
+    Style Props
+</HeadingLink>
+
+All layout components share a common styling API as detailed below. These style props will accept 
+any appropriate CSS values - including units like `vw` and `vh`, and functions like `calc()`, 
+`rgba()`, `hsl()`, etc.
+
+If you're [using a theme](/docs/theming), many of these style props will have direct access to the design 
+tokens and scales in the theme. Refer to the tables below to see which style props have access to which theme 
+keys.
+
+In addition to the style props detailed below, all layout components also have access to the props 
+mentioned in the [advanced API](/docs/advanced-api) section.
+
+
+<HeadingLink
+    as="h2"
+    slug="display"
+>
+    Display
+</HeadingLink>
+<StyleApiTable themeProperty="display" />
+
+<HeadingLink
+    as="h2"
+    slug="flexbox"
+>
+    Flexbox
+</HeadingLink>
+<StyleApiTable themeProperty="flexbox" />
+
+<HeadingLink
+    as="h2"
+    slug="grid"
+>
+    Grid
+</HeadingLink>
+<StyleApiTable themeProperty="grid" />
+
+<HeadingLink
+    as="h2"
+    slug="position"
+>
+    Position
+</HeadingLink>
+<StyleApiTable themeProperty="position" />
+
+<HeadingLink
+    as="h2"
+    slug="space"
+>
+    Space
+</HeadingLink>
+<StyleApiTable themeProperty="space" />
+
+<HeadingLink
+    as="h2"
+    slug="color"
+>
+    Color
+</HeadingLink>
+<StyleApiTable themeProperty="color" />
+
+<HeadingLink
+    as="h2"
+    slug="font"
+>
+    Font
+</HeadingLink>
+<StyleApiTable themeProperty="font" />
+
+<HeadingLink
+    as="h2"
+    slug="border"
+>
+    Border
+</HeadingLink>
+<StyleApiTable themeProperty="border" />
+
+<HeadingLink
+    as="h2"
+    slug="background"
+>
+    Background
+</HeadingLink>
+<StyleApiTable themeProperty="background" />
+
+<HeadingLink
+    as="h2"
+    slug="shadow"
+>
+    Shadow
+</HeadingLink>
+<StyleApiTable themeProperty="shadow" />
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/getting-started">
+        &larr; Getting Started
+    </DocFooterLink>
+    <DocFooterLink href="/docs/theming">
+        Theming &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

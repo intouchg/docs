@@ -1,0 +1,24 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        usePrevious
+    </Heading>
+    <RepoSourceLink repo="hooks" href="/usePrevious.ts" />
+    <EditDocsLink href="/hooks/usePrevious.mdx" />
+</DocHeaderStack>
+
+Store and access a value from the previous render
+
+```jsx noPreview
+const [ active, setActive ] = useState(false)
+
+const previouslyActive = usePrevious(active)
+```
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/hooks">
+        &larr; Hooks
+    </DocFooterLink>
+    <DocFooterLink href="/docs/recipes">
+        Recipes &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

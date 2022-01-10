@@ -1,0 +1,59 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        Select
+    </Heading>
+    <RepoSourceLink repo="components" href="/Select.tsx" />
+    <EditDocsLink href="/components/select.mdx" />
+</DocHeaderStack>
+
+Renders a `select`. Can be used as a [controlled or uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) 
+component.
+
+```jsx
+<Select width="200px">
+    <option value="1">
+        Option one
+    </option>
+    <option value="2">
+        Option two
+    </option>
+</Select>
+```
+
+<HeadingLink
+    as="h2"
+    slug="icon"
+>
+    <Code>icon</Code>
+</HeadingLink>
+
+The `icon` prop replaces the icon rendered by the component.
+
+```jsx
+<Select
+    width="200px"
+    padding={2}
+    borderWidth="2px"
+    borderColor="Primary"
+    borderRadius="4px"
+    icon={
+        <DotIcon fill="Primary" />
+    }
+>
+    <option value="1">
+        Option one
+    </option>
+    <option value="2">
+        Option two
+    </option>
+</Select>
+```
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/components/radio">
+        &larr; Radio
+    </DocFooterLink>
+    <DocFooterLink href="/docs/components/toggle">
+        Toggle &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

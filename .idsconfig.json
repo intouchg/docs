@@ -1,0 +1,6 @@
+{
+	"values": "theme/values.json",
+	"variants": "theme/variants.json",
+	"icons": "icons",
+	"output": "theme/theme.js"
+}

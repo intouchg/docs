@@ -1,0 +1,188 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        Tabs
+    </Heading>
+    <EditDocsLink href="/recipes/tabs.mdx" />
+</DocHeaderStack>
+
+We'll use the [`Activatables`](/docs/components/activatables) stateful component to control 
+animating the Tabs. Each `Activatables` component will act as a group of Tabs. This 
+will also allow easily forcing at least one tab to be open.
+
+
+<HeadingLink
+    as="h2"
+    slug="1-create-tabbutton-component"
+>
+    1. Create <Code>TabButton</Code> component
+</HeadingLink>
+
+First we'll create an `AnimatedTitle` component to animate the Tab title using `styled-components`.
+
+Then we'll create a `TabButton` component, which uses the `active` and `onClick` props provided by the `Activatable` 
+stateful component to drive the `AnimatedTitle` animation, as well as toggling the `active` state on click.
+
+```jsx noPreview
+import styled from 'styled-components'
+import { Activatable, Text, Button } from '@intouchg/components'
+
+const AnimatedTitle = styled(Text)`
+    color: ${(props) => props.active ? 'green' : 'red'};
+`
+
+const TabButton = ({ id, ...props }) => (
+    <Activatable id={id}>
+        {({ active, toggleActive }) => (
+            <Button
+                invisible
+                onClick={toggleActive}
+            >
+                <AnimatedTitle
+                    active={active}
+                    {...props}
+                />
+            </Button>
+        )}
+    </Activatable>
+)
+
+export { TabButton }
+```
+
+<HeadingLink
+    as="h2"
+    slug="2-create-tabcontent-component"
+>
+    2. Create <Code>TabContent</Code> component
+</HeadingLink>
+
+Next we'll create an `AnimatedContent` component to animate the Tab content using `react-spring`. The [`useTransition` hook](https://react-spring.io/hooks/use-transition) allows 
+specifying how an element will animate in and out as its state changes.
+
+Then we'll create a `TabContent` component, which uses the `active` prop provided by the `Activatable` stateful 
+component to drive the `AnimatedContent` animation.
+
+```jsx noPreview
+import { useTransition, animated } from 'react-spring'
+import { Activatable, Box } from '@intouchg/components'
+
+const AnimatedContent = ({ active, ...props }) => {
+    const transition = useTransition(active, {
+        from: { x: '-20%', opacity: 0 },
+        enter: { x: '0%', opacity: 1 },
+        leave: { x: '20%', opacity: 0 },
+    })
+
+    return transition((styles, active) => active && (
+        <animated.div
+            style={{
+                position: 'absolute',
+                ...styles,
+            }}
+        >
+            <Box {...props} />
+        </animated.div>
+    ))
+}
+
+const TabContent = ({ id, ...props }) => (
+    <Activatable id={id}>
+        {({ active }) => (
+            <AnimatedContent
+                active={active}
+                {...props}
+            />
+        )}
+    </Activatable>
+)
+
+export { TabContent }
+```
+
+<HeadingLink
+    as="h2"
+    slug="3-create-tabcontainer-component"
+>
+    3. Create <Code>TabContainer</Code> component
+</HeadingLink>
+
+Next we'll create a `TabContainer` component for basic container styles. This will be the parent element to the `TabContent` components.
+
+```jsx noPreview
+import styled from 'styled-components'
+import { Stack } from '@intouchg/components'
+
+const TabContainer = styled(Stack)`
+    position: relative;
+    width: 100%;
+    background-color: white;
+    border: 2px solid grey;
+    border-radius: 8px;
+`
+
+export { TabContainer }
+```
+
+<HeadingLink
+    as="h2"
+    slug="4-build-the-tabs"
+>
+    4. Build the Tabs
+</HeadingLink>
+
+We're finally ready to build some Tabs. Each group of Tabs should be wrapped in an `Activatables` component.
+
+Use the `TabContainer`, `TabButton`, and `TabContent` components to build the Tabs. Remember to pass the 
+`id` prop to the `TabButton` and `TabContent` components.
+
+```jsx noPreview
+import { Activatables, Flex } from '@intouchg/components'
+import { TabContainer } from './TabContainer'
+import { TabButton } from './TabButton'
+import { TabContent } from './TabContent'
+
+const MyPage = () => (
+    <Activatables
+        allowNoneActive={false}
+        defaultActiveIds={[ '1' ]}
+    >
+
+        <Flex>
+            <TabButton id="1">
+                Tab 1
+            </TabButton>
+            <TabButton id="2">
+                Tab 2
+            </TabButton>
+            <TabButton id="3">
+                Tab 3
+            </TabButton>
+        </Flex>
+
+        <TabContainer>
+            <TabContent id="1">
+                First tab content - Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit.
+            </TabContent>
+            <TabContent id="2">
+                Second tab content - Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit.
+            </TabContent>
+            <TabContent id="3">
+                Third tab content - Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit.
+            </TabContent>
+        </TabContainer>
+
+    </Activatables>
+)
+```
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/recipes">
+        &larr; Recipes
+    </DocFooterLink>
+    <DocFooterLink href="/docs/resources">
+        Resources &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

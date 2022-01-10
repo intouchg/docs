@@ -1,0 +1,32 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        Grid
+    </Heading>
+    <RepoSourceLink repo="components" href="/Grid.tsx" />
+    <EditDocsLink href="/components/grid.mdx" />
+</DocHeaderStack>
+
+Renders a `div` with `display: grid;`
+
+```jsx
+<Grid
+    gridRow="auto auto"
+    gridTemplateColumns="50% 50%"
+    gridRowGap={1}
+    gridColumnGap={2}
+>
+    <Box p={2} bg="Secondary">Hello</Box>
+    <Box p={2} bg="Tertiary">world</Box>
+    <Box p={2} bg="Tertiary">Lorem</Box>
+    <Box p={2} bg="Secondary">ipsum</Box>
+</Grid>
+```
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/components/stack">
+        &larr; Stack
+    </DocFooterLink>
+    <DocFooterLink href="/docs/components/text">
+        Text &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

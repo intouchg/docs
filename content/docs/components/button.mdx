@@ -1,0 +1,57 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        Button
+    </Heading>
+    <RepoSourceLink repo="components" href="/Button.tsx" />
+    <EditDocsLink href="/components/button.mdx" />
+</DocHeaderStack>
+
+Renders a `button`
+
+```jsx
+<Button
+    color="Secondary"
+    backgroundColor="Primary"
+    paddingX={3}
+    paddingY={2}
+    borderWidth="4px"
+    borderRadius="4px"
+>
+    Button
+</Button>
+```
+
+<HeadingLink
+    as="h2"
+    slug="invisible"
+>
+    <Code>invisible</Code>
+</HeadingLink>
+
+Styles the button to be transparent and borderless. This allows 
+easily composing semantic clickable elements.
+
+```jsx
+<Button
+    invisible
+    onClick={() => alert('Hello world')}
+>
+    <Heading>
+        Hello world
+    </Heading>
+    <Text>
+        Lorem ipsum dolor sit amet
+    </Text>
+</Button>
+
+
+```
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/components/heading">
+        &larr; Heading
+    </DocFooterLink>
+    <DocFooterLink href="/docs/components/link">
+        Link &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

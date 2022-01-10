@@ -1,0 +1,45 @@
+[
+	{
+		"type": "variant",
+		"id": "0c4f7e54-d37d-4716-95db-63294018e34a",
+		"variantType": "heading",
+		"name": "Primary",
+		"styles": {
+			"fontFamily": "abb19bd9-8a98-44f6-8ce5-798c7dd68cad"
+		}
+	},
+	{
+		"type": "variant",
+		"id": "f62021f1-8bcd-45fc-b5b1-ecfb690a37f4",
+		"variantType": "link",
+		"name": "Primary",
+		"styles": {
+			"color": "e377dbbb-8d99-4a32-8651-fadb7c3d198e",
+			"textDecoration": "none",
+			"&:visited": {
+				"color": "e377dbbb-8d99-4a32-8651-fadb7c3d198e"
+			}
+		}
+	},
+	{
+		"type": "variant",
+		"id": "3c68306a-2290-44db-8958-a1e8d938123b",
+		"variantType": "link",
+		"name": "Secondary",
+		"styles": {
+			"color": "e377dbbb-8d99-4a32-8651-fadb7c3d198e",
+			"&:visited": {
+				"color": "e377dbbb-8d99-4a32-8651-fadb7c3d198e"
+			}
+		}
+	},
+	{
+		"type": "variant",
+		"id": "5c614688-b321-4bf4-82aa-deebd88f5166",
+		"variantType": "heading",
+		"name": "Secondary",
+		"styles": {
+			"fontFamily": "abb19bd9-8a98-44f6-8ce5-798c7dd68cad"
+		}
+	}
+]

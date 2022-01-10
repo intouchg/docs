@@ -1,0 +1,58 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        Azure Personal Access Token
+    </Heading>
+    <EditDocsLink href="/access-token.mdx" />
+</DocHeaderStack>
+
+Follow the steps below to generate credentials for Azure DevOps. 
+Without these credentials, you will not be able to fully utilize the Intouch Design System 
+Sketch Plugin.
+
+1. Go to your [Azure DevOps Personal Access Tokens](https://intazdoweb.intouchsol.com/_usersSettings/tokens)
+
+2. Click the `New token` button at the top
+
+<img
+    width="100%"
+    src="/access-token1.png"
+/>
+
+3. Name the new token `Intouch Design System`
+
+4. Set the `Organization` to `All accessible organizations`
+
+5. Set the `Expiration` to `Custom defined`
+
+6. Change the expiration calendar date to be one year in the future
+
+7. Set the `Scope` to `Full access`
+
+<img
+    width="100%"
+    src="/access-token2.png"
+/>
+
+8. Click `Create` and copy the generated token
+
+<img
+    width="100%"
+    src="/access-token3.png"
+/>
+
+9. Paste the copied token into the "access token" field of the Sketch 
+Plugin when attempting to login to Azure.
+
+**You do not need to write the token down.** You login info will be saved in the Sketch Plugin. 
+If you need to login to the Sketch Plugin again in the future, you can **regenerate the access token**.
+
+
+<HeadingLink
+    as="h2"
+    slug="regenerate-the-token"
+>
+    Regenerate the token
+</HeadingLink>
+
+Go to your [Azure DevOps Personal Access Tokens](https://intazdoweb.intouchsol.com/_usersSettings/tokens), 
+select the `Intouch Design System` token that you created earlier, and click the `Regenerate` button.

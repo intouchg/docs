@@ -1,0 +1,92 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        OffscreenContainer
+    </Heading>
+    <EditDocsLink href="/recipes/offscreen-container.mdx" />
+</DocHeaderStack>
+
+The `OffscreenContainer` component is a simple container that sits offscreen until it is activated.
+
+<HeadingLink
+    as="h2"
+    slug="1-create-offscreencontainer-component"
+>
+    1. Create <Code>OffscreenContainer</Code> component
+</HeadingLink>
+
+The `OffscreenContainer` component will receive a stateful `show` prop, as well as its state setter function `setShow` prop. 
+The `show` prop will drive the animation, while `setShow` is used to close the navigation when the button is clicked.
+
+```jsx noPreview
+import { useSpring, animated } from 'react-spring'
+import { Box, Button } from '@intouchg/components'
+
+const OffscreenContainer = ({ show, setShow, children, ...props }) => {
+    const styles = useSpring({ x: show ? '0%' : '-100%' })
+
+    return (
+        <animated.div
+            style={{
+                position: 'fixed',
+                top: '0',
+                left: '0',
+                zIndex: '10',
+                ...styles,
+            }}
+        >
+            <Box {...props}>
+                <Button onClick={() => setShow(false)}>
+                    Close
+                </Button>
+                {children}
+            </Box>
+        </animated.div>
+    )
+}
+
+export { OffscreenContainer }
+```
+
+<HeadingLink
+    as="h2"
+    slug="2-use-offscreencontainer-component"
+>
+    2. Use <Code>OffscreenContainer</Code> component
+</HeadingLink>
+
+Use the `OffscreenContainer` component in your layout.
+
+```jsx noPreview
+import { useState } from 'react'
+import { Button, Text } from '@intouchg/components'
+import { OffscreenNav } from './OffscreenNav'
+
+const MyPage = () => {
+    const [ show, setShow ] = useState(false)
+
+    return (
+        <>
+            <Button onClick={() => setShow(true)}>
+                Open
+            </Button>
+            <OffscreenContainer
+                show={show}
+                setShow={setShow}
+            >
+                <Text>
+                    Hello world!
+                </Text>
+            </OffscreenContainer>
+        </>
+    )
+}
+```
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/recipes">
+        &larr; Recipes
+    </DocFooterLink>
+    <DocFooterLink href="/docs/resources">
+        Resources &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

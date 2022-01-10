@@ -1,0 +1,26 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        useCookie
+    </Heading>
+    <RepoSourceLink repo="hooks" href="/useCookie.ts" />
+    <EditDocsLink href="/hooks/useCookie.mdx" />
+</DocHeaderStack>
+
+Store and retrieve cookies and react to changes
+
+```jsx noPreview
+const [ cookie, setCookie ] = useCookie('myCookieKey')
+
+const acceptCookie = () => setCookie(cookieValue)
+const acceptCookieWithExpiration = () => setCookie(cookieValue, maxAgeSeconds)
+```
+
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/hooks">
+        &larr; Hooks
+    </DocFooterLink>
+    <DocFooterLink href="/docs/recipes">
+        Recipes &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

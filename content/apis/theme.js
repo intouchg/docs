@@ -1,0 +1,33 @@
+export default {
+    values: {
+        breakpoints: 'array',
+        space: 'array',
+        colors: 'object',
+        fonts: 'object',
+        fontSizes: 'array',
+        fontWeights: 'array',
+        lineHeights: 'array',
+        letterSpacings: 'array',
+        borderWidths: 'array',
+        radii: 'array',
+        shadows: 'object',
+        zIndices: 'array',    
+    },
+    variants: {
+        buttons: 'object',
+        texts: 'object',
+        headings: 'object',
+        links: 'object',
+        lists: 'object',
+        listItems: 'object',
+        icons: 'object',
+        labels: 'object',
+        inputs: 'object',
+        radios: 'object',
+        checkboxes: 'object',
+        selects: 'object',
+        sliders: 'object',
+        toggles: 'object',
+        textareas: 'object',
+    }
+}

@@ -1,0 +1,24 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        useIsoLayoutEffect
+    </Heading>
+    <RepoSourceLink repo="hooks" href="/useIsoLayoutEffect.ts" />
+    <EditDocsLink href="/hooks/useIsoLayoutEffect.mdx" />
+</DocHeaderStack>
+
+Isomorphic `useLayoutEffect` for Server-Side Rendering
+
+```jsx noPreview
+const myElement = useRef()
+
+useIsoLayoutEffect(() => console.log(myElement.current), [])
+```
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/hooks">
+        &larr; Hooks
+    </DocFooterLink>
+    <DocFooterLink href="/docs/recipes">
+        Recipes &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

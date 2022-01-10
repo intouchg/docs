@@ -1,0 +1,15 @@
+export default {
+    media: 'breakpoints',
+    breakpoint: 'breakpoints',
+    space: 'space',
+    color: 'colors',
+    font: 'fonts',
+    fontSize: 'fontSizes',
+    fontWeight: 'fontWeights',
+    lineHeight: 'lineHeights',
+    letterSpacing: 'letterSpacings',
+    borderWidth: 'borderWidths',
+    radius: 'radii',
+    shadow: 'shadows',
+    zIndex: 'zIndices',
+}

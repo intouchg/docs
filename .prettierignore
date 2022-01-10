@@ -1,0 +1,17 @@
+# Default ignores
+node_modules
+.nvmrc
+.npmrc
+readme.md
+.husky
+.next
+out
+public
+theme
+icons
+vendor
+
+# Project ignores
+content
+shaders/**/*.frag
+shaders/**/*.vert

@@ -1,0 +1,83 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        StickyISI
+    </Heading>
+    <EditDocsLink href="/recipes/sticky-isi.mdx" />
+</DocHeaderStack>
+
+The `StickyISI` component sits at the bottom of the screen unless the full ISI is visible.
+
+<HeadingLink
+    as="h2"
+    slug="1-create-stickyisi-component"
+>
+    1. Create <Code>StickyISI</Code> component
+</HeadingLink>
+
+The `StickyISI` component will receive an `isiInView` prop, which tracks whether the full ISI 
+is currently visible. When the full ISI is visible, the `StickyISI` will fade away.
+
+The [`useTransition` hook](https://react-spring.io/hooks/use-transition) allows specifying how an element will animate in and out as its state changes.
+
+```jsx noPreview
+import { useTransition, animated } from 'react-spring'
+import { Box } from '@intouchg/components'
+
+const StickyISI = ({ isiInView }) => {
+    const transition = useTransition(!isiInView, {
+        initial: { opacity: 1 },
+        from: { opacity: 0 },
+        enter: { opacity: 1 },
+        leave: { opacity: 0 },
+    })
+
+    return transition((styles, active) => active && (
+        <animated.div style={styles}>
+            <Box
+                position="fixed"
+                width="100%"
+                bottom="0"
+            >
+                Hello world!
+            </Box>
+        </animated.div>
+    ))
+}
+```
+
+<HeadingLink
+    as="h2"
+    slug="2-use-stickyisi-component"
+>
+    2. Use <Code>StickyISI</Code> component
+</HeadingLink>
+
+Use the `StickyISI` component in your layout. We can determine whether the full ISI is currently in view 
+with the [`useInView` hook](/docs/hooks/useInView).
+
+```jsx noPreview
+import { StickyISI } from './StickyISI'
+import { useInView } from '@intouchg/hooks'
+
+const MyPage = () => {
+    const [ ref, isiInView ] = useInView()
+
+    return (
+        <>
+            <Box ref={ref}>
+                This is the full ISI.
+            </Box>
+            <StickyISI isiInView={isiInView} />
+        </>
+    )
+}
+```
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/recipes">
+        &larr; Recipes
+    </DocFooterLink>
+    <DocFooterLink href="/docs/resources">
+        Resources &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

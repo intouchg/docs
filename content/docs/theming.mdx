@@ -1,0 +1,229 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        Theming
+    </Heading>
+    <EditDocsLink href="/theming.mdx" />
+</DocHeaderStack>
+
+The theme is a JavaScript object that contains all the design tokens and component variants used 
+to style the app. To use a theme, you must have a [`ThemeProvider` component](https://styled-components.com/docs/advanced#theming), 
+which is usually placed at the root of your app.
+
+<HeadingLink
+    as="h2"
+    slug="theme-keys"
+>
+    Theme Keys
+</HeadingLink>
+
+The full theme schema can be found in the 
+[`@intouchg/theme` package](https://github.com/intouchg/theme/blob/master/src/schema.ts#L383-L399). 
+It primarily follows the [`styled-system` API](https://styled-system.com/theme-specification) 
+and the [System UI Theme Specification](https://system-ui.com/theme/).
+
+<HeadingLink slug="design-token-keys">
+    Design Token Keys
+</HeadingLink>
+<ThemeApiTable themePropertyType="values" />
+
+<HeadingLink slug="component-variant-keys">
+    Component Variant Keys
+</HeadingLink>
+<ThemeApiTable themePropertyType="variants" />
+
+
+<HeadingLink
+    as="h2"
+    slug="design-tokens-and-scales"
+>
+    Design Tokens and Scales
+</HeadingLink>
+
+**Design tokens** are all the style variables that compose your app's styles. Design tokens include things like spacing, colors, fonts, 
+font sizes, and shadows. A **scale** is an ordered list of design tokens. Design tokens are accessed via the [common API](/docs/api) and 
+[helper functions](/docs/helpers).
+
+In the example below, `space`, `colors`, and `fontSizes` are all collections of **design tokens**. 
+The `space` and `fontSizes` design tokens have been organized into **scales**. Values in `colors` are 
+referenced by name, while values in `space` and `fontSizes` are referenced by their index in the scale.
+
+```jsx
+<ThemeProvider
+    theme={{
+        space: [ '0', '4px', '8px', '16px', '24px', '48px' ],
+        colors: {
+            Primary: '#5e00ff',
+            Secondary: '#ffbbf0',
+            Tertiary: '#71e0d5',
+        },
+        fontSizes: [ '0', '1rem', '1.5rem', '2rem', '2.5rem' ],
+    }}
+>
+    <Box
+        padding={3}
+        color="Secondary"
+        backgroundColor="Primary"
+        fontSize={2}
+    >
+        Hello world
+    </Box>
+</ThemeProvider>
+```
+
+<HeadingLink
+    as="h2"
+    slug="variants"
+>
+    Variants
+</HeadingLink>
+
+**Variants** are reusable collections of styles. Most layout components can use variants, and each 
+component has its own collection of variants. For example, the `Heading` and `Button` components might 
+both have a variant named "Fancy", but they are not related. 
+
+Variants live in the theme file alongside the design tokens. Variant styles have access to those 
+design tokens through the [common API](/docs/api). By default, any component which can have variants will use 
+the "Primary" variant unless otherwise specified.
+
+```jsx
+<ThemeProvider
+    theme={{
+        colors: {
+            Primary: '#5e00ff',
+            Secondary: '#ffbbf0',
+            Tertiary: '#71e0d5',
+        },
+        buttons: {
+            Primary: {
+                color: 'Secondary',
+                backgroundColor: 'Primary',
+                '&:hover': {
+                    color: 'Tertiary',
+                },
+            },
+            Fancy: {
+                color: 'Primary',
+                backgroundColor: 'Secondary',
+                fontFamily: 'Georgia',
+                fontStyle: 'oblique',
+            },
+        },
+    }}
+>
+    <Button>
+        Primary button
+    </Button>
+    <Button variant="Fancy">
+        Fancy button
+    </Button>
+</ThemeProvider>
+```
+
+Any variant styles can be overridden inline. With this in mind, try to make variants as 
+reusable as possible. Don't apply styles to a variant if they will be overridden most of 
+the time, and don't create a new variant if you can use one that already exists.
+
+```jsx
+<ThemeProvider
+    theme={{
+        colors: {
+            Primary: '#5e00ff',
+            Secondary: '#ffbbf0',
+            Tertiary: '#71e0d5',
+        },
+        buttons: {
+            Fancy: {
+                color: 'Secondary',
+                backgroundColor: 'Primary',
+                fontFamily: 'Georgia',
+                fontStyle: 'oblique',
+            },
+        },
+    }}
+>
+    <Button variant="Fancy">
+        Fancy button
+    </Button>
+    <Button variant="Fancy" color="Tertiary">
+        Tweaked fancy button
+    </Button>
+</ThemeProvider>
+```
+
+<HeadingLink
+    as="h2"
+    slug="example-theme"
+>
+    Example Theme
+</HeadingLink>
+
+The example theme below shows how component variants can use both design tokens from the theme and 
+raw CSS values. Variants also have access to all the features of the [common API](/docs/api), 
+including responsive styles.
+
+```jsx noPreview
+const theme = {
+
+    // Design tokens and scales
+    breakpoints: [ '30em', '43em', '62em', '82em' ],
+    space: [ '0', '4px', '8px', '16px', '24px', '48px', '64px' ],
+    colors: {
+        Primary: '#5f01ff',
+        Secondary: 'hsl(313, 100%, 87%)',
+        Background: 'rgb(214, 214, 214)',
+    },
+    fonts: {
+        'AvenirNext-Regular': 'AvenirNext-Regular',
+        'AvenirNext-Bold': 'AvenirNext-Bold',
+    },
+    fontSizes: [ '0', '0.875rem', '1rem', '1.25rem', '1.5rem', '2rem' ],
+    lineHeights: [ '0', '1', '1.25', '1.5', '2' ],
+    letterSpacings: [ '0', '1px' ],
+    borderWidths: [ '0', '1px', '3px', '6px' ],
+    radii: [ '0', '2px', '4px', '8px' ],
+    shadows: {
+        Accent: '0 2px 6px -2px rgba(0, 0, 0, 0.15)',
+    },
+    zIndices: [ '0', '1', '10', '100', '1000' ],
+
+    // Component variants
+    buttons: {
+        Danger: {
+            width: [ '100%', null, null, '50%' ],
+            color: 'red',
+            backgroundColor: 'transparent',
+            paddingX: 3,
+            paddingY: '10px',
+            borderWidth: 2,
+        }
+    },
+    headings: {
+        Primary: {
+            fontFamily: 'AvenirNext-Bold',
+            fontSize: [ 5, 6 ],
+        },
+        Fancy: {
+            fontFamily: 'AvenirNext-Regular',
+            fontSize: '1.1rem',
+            boxShadow: 'Accent',
+        },
+    },
+    links: {
+        Primary: {
+            color: 'Primary',
+            '&:hover': {
+                color: 'Secondary',
+            }
+        },
+    },
+}
+```
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/api">
+        &larr; Common API
+    </DocFooterLink>
+    <DocFooterLink href="/docs/helpers">
+        Helper Functions &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

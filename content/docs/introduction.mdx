@@ -1,0 +1,67 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        Introduction
+    </Heading>
+    <EditDocsLink href="/introduction.mdx" />
+</DocHeaderStack>
+
+This React component library provides lightweight, high-performance primitive building blocks 
+for constructing themeable design system components. The source code can be [found on github](https://github.com/intouchg) 
+and published to [the `@intouchg` NPM scope](https://www.npmjs.com/org/intouchg).
+
+This library uses [`styled-components`](https://styled-components.com/) and [`styled-system`](https://styled-system.com/) 
+under the hood. You should be familiar with the `styled-components` API to use this library to the fullest extent. 
+Conceptually, the components in this library can be split into two categories:
+
+* Layout components
+* Stateful components
+
+**Layout components** render basic HTML content like a `div`, `span`, or `button`. These components are responsible for styling the UI. 
+Most of the components in this library are layout components, and all layout components share [common](/docs/api) and [advanced APIs](/docs/advanced-api) 
+for styling.
+
+```jsx
+<Flex
+    padding={3}
+    backgroundColor="Primary"
+>
+    <Text color="Secondary">
+        Hello
+    </Text>
+    <Text color="Tertiary">
+        World
+    </Text>
+</Flex>
+```
+
+**Stateful components** pass down state changes to their child layout components. It's up to the layout component to rerender based on that new state. 
+
+Here's an example using the `Activatables` stateful component. Notice how the `Button` layout component uses the `active` value passed down by 
+the `Activatable` child component to render dynamic styles.
+
+```jsx
+<Activatables defaultActiveIds={[ '1' ]}>
+    <Activatable id="1">
+        {({ active, toggleActive }) => (
+            <Button
+                invisible
+                fontSize="2rem"
+                color={active ? 'Primary' : 'Secondary'}
+                transform={`scale(${active ? 1.2 : 1})`}
+                transition="all 300ms ease-in-out"
+                onClick={toggleActive}
+            >
+                Click to toggle
+            </Button>
+        )}
+    </Activatable>
+</Activatables>
+```
+
+Next you'll see how to get started with the component library and build a basic UI.
+
+<DocFooterFlex justifyContent="flex-end">
+    <DocFooterLink href="/docs/getting-started">
+        Getting Started &rarr;
+    </DocFooterLink>
+</DocFooterFlex>

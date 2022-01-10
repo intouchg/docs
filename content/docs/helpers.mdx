@@ -1,0 +1,72 @@
+<DocHeaderStack>
+    <Heading as="h1">
+        Helper Functions
+    </Heading>
+    <EditDocsLink href="/helpers.mdx" />
+</DocHeaderStack>
+
+When writing `styled-components`, theme values can always be accessed via the `theme` prop that is passed to each component:
+
+```jsx noPreview
+import styled from 'styled-components'
+import { Box } from '@intouchg/components'
+
+const PrimaryBox = styled(Box)`
+    background-color: ${(props) => props.theme.colors.Primary};
+    font-size: ${(props) => props.theme.fontSizes[3]};
+`
+
+const SecondaryDiv = styled.div`
+    background-color: ${(props) => props.theme.colors.Secondary};
+    padding: ${(props) => props.theme.space[2]]};
+`
+```
+
+However, this library exports some helper functions to simplify this process:
+
+```jsx noPreview
+import styled from 'styled-components'
+import { Box, color, fontSize, space } from '@intouchg/components'
+
+const PrimaryBox = styled(Box)`
+    background-color: ${color('Primary')};
+    font-size: ${fontSize(3)};
+`
+
+const SecondaryDiv = styled.div`
+    background-color: ${color('Secondary')};
+    padding: ${space(2)};
+`
+```
+
+The `media` helper function generates `min-width` media queries, using the breakpoints in the theme:
+
+```jsx noPreview
+import styled from 'styled-components'
+import { Box, media } from '@intouchg/components'
+
+const PrimaryBox = styled(Box)`
+    width: 100%;
+
+    ${media(2)} {
+        width: 50%;
+    }
+`
+```
+
+<HeadingLink
+    as="h2"
+    slug="functions"
+>
+    Functions
+</HeadingLink>
+<HelperApiTable />
+
+<DocFooterFlex>
+    <DocFooterLink href="/docs/theming">
+        &larr; Theming
+    </DocFooterLink>
+    <DocFooterLink href="/docs/advanced-api">
+        Advanced API &rarr;
+    </DocFooterLink>
+</DocFooterFlex>
